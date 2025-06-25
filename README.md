@@ -18,7 +18,7 @@ A clean and modern timer app built using React. This app includes **start**, **p
 
 ## 📸 Screenshot
 
-![Timer App Screenshot](..src/assets/screenshot-1.png)  
+![Timer App Screenshot](.src/assets/screenshot-1.png)
 > *Inspired by aesthetic timer designs for focused study sessions*
 
 ---
