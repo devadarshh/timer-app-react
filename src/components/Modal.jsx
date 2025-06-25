@@ -1,5 +1,4 @@
-import React from "react";
-
+import "../styles/modal.css";
 const Modal = ({
   setIsModalVisible,
   hour,
@@ -55,42 +54,56 @@ const Modal = ({
   }
 
   return (
-    <div>
-      <label>
-        Hour
-        <input
-          type="number"
-          min="0"
-          value={hour}
-          onChange={(e) => setHour(parseInt(e.target.value) || 0)}
-        />
-      </label>
-      <label>
-        Minutes
-        <input
-          type="number"
-          min="0"
-          max="59"
-          value={minute}
-          onChange={(e) => setMinute(parseInt(e.target.value) || 0)}
-        />
-      </label>
-      <label>
-        Seconds
-        <input
-          type="number"
-          min="0"
-          max="59"
-          value={second}
-          onChange={(e) => setSecond(parseInt(e.target.value) || 0)}
-        />
-      </label>
+    <div className="modal-overlay">
+      <div className="modal-box">
+        <h2>Timer Settings</h2>
 
-      <br />
-      <br />
-      <button onClick={handleClose}>Close</button>
-      <button onClick={handleSaveChanges}>Save Changes</button>
-      <button onClick={handleReset}>Reset All</button>
+        <div className="input-group">
+          <label>Hour</label>
+          <input
+            type="number"
+            min="0"
+            value={hour}
+            onChange={(e) => setHour(parseInt(e.target.value) || 0)}
+          />
+        </div>
+
+        <div className="input-group">
+          <label>Minutes</label>
+          <input
+            type="number"
+            min="0"
+            max="59"
+            value={minute}
+            onChange={(e) => setMinute(parseInt(e.target.value) || 0)}
+          />
+        </div>
+
+        <div className="input-group">
+          <label>Seconds</label>
+          <input
+            type="number"
+            min="0"
+            max="59"
+            value={second}
+            onChange={(e) => setSecond(parseInt(e.target.value) || 0)}
+          />
+        </div>
+
+        <div className="modal-buttons">
+          <button className="reset-btn" onClick={handleReset}>
+            Reset All
+          </button>
+          <div>
+            <button className="close-btn" onClick={handleClose}>
+              Close
+            </button>
+            <button className="save-btn" onClick={handleSaveChanges}>
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

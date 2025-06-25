@@ -1,5 +1,6 @@
 import Timer from "./components/Timer";
 import { useState } from "react";
+import "./styles/app.css";
 
 function App() {
   const [hour, setHour] = useState(0);

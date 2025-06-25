@@ -20,6 +20,11 @@ function Timer({ hour, setHour, minute, setMinute, second, setSecond }) {
   useEffect(() => {
     let intervalId;
     if (isRunning && remainingTime > 0) {
+      if (remainingTime > 0) {
+        document.title = `${formatTime(remainingTime)}`;
+      } else {
+        document.title = " Timer App";
+      }
       intervalId = setInterval(() => {
         setRemainingTime((prevTime) => {
           if (prevTime <= 1) {
@@ -70,24 +75,34 @@ function Timer({ hour, setHour, minute, setMinute, second, setSecond }) {
     const totalSeconds = h * 3600 + m * 60 + s;
     setRemainingTime(totalSeconds);
   }
+  function formatTime(seconds) {
+    const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
+    const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+    const s = String(seconds % 60).padStart(2, "0");
+    return `${h}:${m}:${s}`;
+  }
 
   return (
-    <div>
-      <div>
+    <div className="timer-container">
+      {/* Time display */}
+      <div className="time-display">
         <span>{paddedHour}:</span>
         <span>{paddedMinute}:</span>
         <span>{paddedSecond}</span>
       </div>
 
-      {!isRunning ? (
-        <button onClick={startTimer}>Start</button>
-      ) : (
-        <button onClick={pauseTimer}>Pause</button>
-      )}
+      {/* Control buttons */}
+      <div className="timer-controls">
+        {!isRunning ? (
+          <button onClick={startTimer}>Start</button>
+        ) : (
+          <button onClick={pauseTimer}>Pause</button>
+        )}
+        <button onClick={resetTimer}>Reset</button>
+        <button onClick={handleModal}>Edit</button>
+      </div>
 
-      <button onClick={resetTimer}>Reset</button>
-      <button onClick={handleModal}>Edit</button>
-
+      {/* Modal */}
       {isModalVisible && (
         <Modal
           isModalVisible={isModalVisible}
@@ -98,7 +113,7 @@ function Timer({ hour, setHour, minute, setMinute, second, setSecond }) {
           setMinute={setMinute}
           second={second}
           setSecond={setSecond}
-          onSaveTime={updateRemainingTime} 
+          onSaveTime={updateRemainingTime}
         />
       )}
     </div>
