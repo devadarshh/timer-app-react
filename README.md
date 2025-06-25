@@ -18,14 +18,14 @@ A clean and modern timer app built using React. This app includes **start**, **p
 
 ## 📸 Screenshot
 
-![Timer App Screenshot](./assets/screenshot.png)  
+![Timer App Screenshot](./assets/screenshot-1.png)  
 > *Inspired by aesthetic timer designs for focused study sessions*
 
 ---
 
 ## 🚀 Live Demo
 
-🔗 [Click here to view the hosted timer app](https://your-deployed-link.vercel.app)
+🔗 [Click here to view the hosted timer app](https://timer-app-react-devadarshh.netlify.app/)
 
 ---
 
