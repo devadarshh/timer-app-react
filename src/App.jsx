@@ -1,3 +1,8 @@
+// App.jsx
+// Root component for the Timer App.
+// Manages global state for hours, minutes, and seconds,
+// and passes it down to the Timer component for countdown functionality and display.
+
 import Timer from "./components/Timer";
 import { useState } from "react";
 import "./styles/app.css";

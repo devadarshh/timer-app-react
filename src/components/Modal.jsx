@@ -1,4 +1,10 @@
+// Modal.jsx
+// This component renders a centered modal dialog for editing the timer values.
+// It allows the user to input hours, minutes, and seconds, and validates the input.
+// The user can save the changes, reset values, or close the modal.
+
 import "../styles/modal.css";
+
 const Modal = ({
   setIsModalVisible,
   hour,
@@ -9,18 +15,22 @@ const Modal = ({
   setSecond,
   onSaveTime,
 }) => {
+  // Close the modal without saving changes
   function handleClose(event) {
     event.preventDefault();
     setIsModalVisible(false);
   }
 
+  // Save the updated time and close modal
   function handleSaveChanges(event) {
     event.preventDefault();
 
+    // Parse and validate input values
     const h = parseInt(hour);
     const m = parseInt(minute);
     const s = parseInt(second);
 
+    // Input validation for valid time values
     if (
       isNaN(h) ||
       isNaN(m) ||
@@ -35,17 +45,21 @@ const Modal = ({
       return;
     }
 
+    // Update state with new values
     setHour(h);
     setMinute(m);
     setSecond(s);
 
+    // Pass new time to parent component (Timer)
     if (typeof onSaveTime === "function") {
-      onSaveTime(h, m, s); // ✅ UPDATE SCREEN DISPLAY TIME
+      onSaveTime(h, m, s);
     }
 
+    // Close the modal
     setIsModalVisible(false);
   }
 
+  // Reset all input fields to 0
   function handleReset(event) {
     event.preventDefault();
     setHour(0);
@@ -58,6 +72,7 @@ const Modal = ({
       <div className="modal-box">
         <h2>Timer Settings</h2>
 
+        {/* Input for hours */}
         <div className="input-group">
           <label>Hour</label>
           <input
@@ -68,6 +83,7 @@ const Modal = ({
           />
         </div>
 
+        {/* Input for minutes */}
         <div className="input-group">
           <label>Minutes</label>
           <input
@@ -79,6 +95,7 @@ const Modal = ({
           />
         </div>
 
+        {/* Input for seconds */}
         <div className="input-group">
           <label>Seconds</label>
           <input
@@ -90,6 +107,7 @@ const Modal = ({
           />
         </div>
 
+        {/* Action buttons: Reset, Close, Save */}
         <div className="modal-buttons">
           <button className="reset-btn" onClick={handleReset}>
             Reset All
